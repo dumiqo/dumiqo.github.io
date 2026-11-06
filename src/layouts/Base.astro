@@ -1,0 +1,76 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://dumiqo.github.io');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title="dumiqo — writing" href="/rss.xml" />
+    <style is:global>
+      :root {
+        --bg: #fbfaf8;
+        --fg: #1a1a1a;
+        --muted: #6b6862;
+        --line: #e3e0da;
+        --accent: #2f5d50;
+        color-scheme: light dark;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #14140f;
+          --fg: #ecebe6;
+          --muted: #9a968c;
+          --line: #2c2c26;
+          --accent: #86c7ab;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font: 17px/1.65 ui-serif, Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      h1, h2, h3 { font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; line-height: 1.25; letter-spacing: -0.01em; }
+      h1 { font-size: 1.75rem; margin: 0 0 0.75rem; }
+      header.site { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); margin-bottom: 2.5rem; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.9rem; }
+      header.site nav a { margin-left: 1rem; color: var(--muted); }
+      header.site .brand { font-weight: 600; letter-spacing: -0.01em; }
+      footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.85rem; }
+      .lede { font-size: 1.15rem; }
+      .muted { color: var(--muted); }
+      code { font-family: ui-monospace, 'SF Mono', Consolas, monospace; font-size: 0.9em; }
+      pre { padding: 1rem; border-radius: 6px; overflow-x: auto; border: 1px solid var(--line); }
+      blockquote { margin: 1.5rem 0; padding-left: 1rem; border-left: 2px solid var(--line); color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site">
+        <a class="brand" href="/">Konstantin Kim</a>
+        <nav>
+          <a href="/writing/">Writing</a>
+          <a href="https://github.com/dumiqo">GitHub</a>
+        </nav>
+      </header>
+      <slot />
+      <footer>
+        <p>dumiqo · <a href="https://github.com/dumiqo/raft-broker">raft-broker</a> · <a href="/rss.xml">RSS</a></p>
+      </footer>
+    </div>
+  </body>
+</html>
