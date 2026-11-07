@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import { href, t, type Lang } from '../i18n';
+import { postsFor, postPath } from '../lib/posts';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const copy = t(lang);
+const other: Lang = lang === 'en' ? 'ru' : 'en';
+const posts = (await postsFor(lang)).slice(0, 3);
+---
+
+<Base
+  lang={lang}
+  title={copy.homeTitle}
+  description={copy.homeDescription}
+  switchHref={href(other)}
+  alternates={[{ lang: 'en', href: href('en') }, { lang: 'ru', href: href('ru') }]}
+>
+  <h1>{copy.homeH1}</h1>
+  <p class="lede">{copy.homeLede}</p>
+
+  <section>
+    <h2>{copy.whatIDo}</h2>
+    <table>
+      <!--
+        Scope card. Public-safe by construction: role and system shape only.
+        Never: employer name, internal architecture, incidents, customer or project specifics.
+        Fill the bracketed facts once, keep them current.
+      -->
+      <tbody>
+        <tr>
+          <th>{copy.role}</th>
+          <td>{copy.roleValue}</td>
+        </tr>
+        <tr>
+          <th>{copy.systems}</th>
+          <td>
+            {copy.systemsLead}
+            <a href="https://github.com/dumiqo/raft-broker">{copy.systemsLink}</a>{copy.systemsTail}
+          </td>
+        </tr>
+        <tr>
+          <th>{copy.stack}</th>
+          <td>
+            <code>C#/.NET</code>, <code>Go</code>, <code>Kafka</code>, <code>PostgreSQL</code>
+          </td>
+        </tr>
+        <tr>
+          <th>{copy.currently}</th>
+          <td>{copy.currentlyValue}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>{copy.readHire}</h2>
+    <ul>
+      <li>
+        <a href={href(lang, 'writing/')}>{copy.navWriting}</a> — {copy.writingLinkText}
+      </li>
+      <li>
+        <a href="https://github.com/dumiqo">GitHub</a> — {copy.githubLinkText}
+      </li>
+      <!-- links:uncomment-when-exists — add the CV PDF and the LinkedIn URL here before the second post ships -->
+      <!-- <li><a href="/cv.pdf">CV (PDF)</a></li> -->
+      <!-- <li><a href="https://www.linkedin.com/in/HANDLE">LinkedIn</a></li> -->
+    </ul>
+  </section>
+
+  {
+    posts.length > 0 && (
+      <section>
+        <h2>{copy.latest}</h2>
+        <ul>
+          {posts.map((post) => (
+            <li>
+              <a href={postPath(post)}>{post.data.title}</a>
+              <span class="muted"> — {post.data.date.toISOString().slice(0, 10)}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <style>
+    table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+    th, td { text-align: left; vertical-align: top; padding: 0.6rem 1rem 0.6rem 0; border-top: 1px solid var(--line); }
+    th { width: 8rem; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+    section { margin-top: 2.75rem; }
+    h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+    ul { padding-left: 1.1rem; }
+    li { margin: 0.4rem 0; }
+  </style>
+</Base>

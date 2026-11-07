@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { href, shortDate, t, type Lang } from '../i18n';
+import { postsFor, postPath } from '../lib/posts';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const copy = t(lang);
+const other: Lang = lang === 'en' ? 'ru' : 'en';
+const posts = await postsFor(lang);
+---
+
+<Base
+  lang={lang}
+  title={copy.writingTitle}
+  description={copy.writingDescription}
+  switchHref={href(other, 'writing/')}
+  alternates={[
+    { lang: 'en', href: href('en', 'writing/') },
+    { lang: 'ru', href: href('ru', 'writing/') },
+  ]}
+>
+  <h1>{copy.writingH1}</h1>
+  <p class="lede muted">{copy.writingLede}</p>
+
+  {posts.length === 0 && <p class="muted">{copy.writingEmpty}</p>}
+
+  <ul class="posts">
+    {
+      posts.map((post) => (
+        <li>
+          <a href={postPath(post)}>{post.data.title}</a>
+          <div class="muted meta">
+            {shortDate(post.data.date)} · {copy.pillar[post.data.pillar]}
+          </div>
+          <p>{post.data.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <style>
+    .posts { list-style: none; padding: 0; }
+    .posts li { border-top: 1px solid var(--line); padding: 1.1rem 0; }
+    .posts a { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 1.05rem; font-weight: 600; }
+    .meta { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.8rem; margin-top: 0.2rem; }
+    .posts p { margin: 0.35rem 0 0; font-size: 0.95rem; }
+  </style>
+</Base>

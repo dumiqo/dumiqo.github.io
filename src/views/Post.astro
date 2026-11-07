@@ -1,0 +1,53 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { href, shortDate, t } from '../i18n';
+import { counterpart, langOf, postPath, type Post } from '../lib/posts';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const lang = langOf(post);
+const copy = t(lang);
+const other = lang === 'en' ? 'ru' : 'en';
+
+// A translation is optional. When it is missing, the switcher still works - it lands on
+// the other language's index instead of a dead post URL, and the meta line says so once.
+const pair = await counterpart(post);
+const switchHref = pair ? postPath(pair) : href(other, 'writing/');
+
+const alternates = pair
+  ? [
+      { lang: langOf(post), href: postPath(post) },
+      { lang: langOf(pair), href: postPath(pair) },
+    ]
+  : [{ lang, href: postPath(post) }];
+---
+
+<Base
+  lang={lang}
+  title={`${post.data.title} — ${copy.siteName}`}
+  description={post.data.description}
+  switchHref={switchHref}
+  alternates={alternates}
+>
+  <article>
+    <h1>{post.data.title}</h1>
+    <p class="muted meta">
+      {shortDate(post.data.date)} · {copy.pillar[post.data.pillar]}
+      {!pair && <span> · {copy.postOnlyIn}</span>}
+    </p>
+    <Content />
+  </article>
+  <p><a href={href(lang, 'writing/')}>{copy.postBack}</a></p>
+
+  <style>
+    .meta { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.85rem; margin-bottom: 2rem; }
+    article :global(h2) { margin-top: 2.25rem; font-size: 1.25rem; }
+    article :global(h3) { margin-top: 1.75rem; font-size: 1.05rem; }
+    article :global(img) { max-width: 100%; height: auto; }
+  </style>
+</Base>
