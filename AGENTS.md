@@ -11,18 +11,22 @@ Personal site and writing of Konstantin Kim (`dumiqo`). Public, real name, Engli
    commit messages keep their original language.
 3. **Every claim needs a receipt.** A commit, a test, a failing run, a measurement, or a citation —
    otherwise it is an opinion, and opinions go in the `path` pillar written as such.
-4. **The ratio is 40 / 30 / 30**: `consensus` (build-in-public on `raft-broker` and replication),
-   `design` (practical system design, interview-grade, from the `teach` material), `path` (how the
-   skill was acquired — including the mistakes). Do not let `path` grow past its third: it is the
-   pillar that produces posts nobody reads.
+4. **Four lanes; the ratio covers the two craft ones.** `consensus` (build-in-public on `raft-broker`
+   and replication) and `design` (practical system design, interview-grade, from the `teach`
+   material) are the craft lanes and take roughly 70 % between them. `path` is how the skill was
+   acquired — including the job search itself: mock-interview runs, prep plans, what the market
+   rejected and why. `ai` is AI in practice: the assistant, the micro-products, and the research
+   behind them. Neither `path` nor `ai` publishes on a quota — it publishes on a receipt. Do not
+   let either grow past the craft lanes: that is where posts nobody reads come from.
 5. **A post is anchored in something done, not something read.** A book digest is not a post; a
    book that changed one decision in the repo is.
 
 ## Cadence
 
-One piece every two weeks, alternating `consensus` ⇄ `design`. Draft Sunday (2 h), edit Sunday
-(1 h), publish Monday morning. A missed post is fine; a silently dead series is not — if the
-project stalls, publish the retrospective, not a promise.
+One piece every two weeks, alternating `consensus` ⇄ `design`. `ai` or `path` takes the slot when
+there is a receipt for it and nothing worth publishing from the craft lanes — never as a filler.
+Draft Sunday (2 h), edit Sunday (1 h), publish Monday morning. A missed post is fine; a silently
+dead series is not — if the project stalls, publish the retrospective, not a promise.
 
 ## Copy rules
 

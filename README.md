@@ -22,7 +22,8 @@ Create `src/content/blog/NNNN-slug.md`:
 title: A claim, not a topic
 description: One sentence a recruiter can read and an engineer will believe.
 date: 2026-12-01
-pillar: consensus   # consensus | design | path
+pillar: consensus   # consensus | design | path | ai
+tags: []            # free-form: postgres, interviews, raft
 draft: true         # true = not built, not listed, not in rss
 ---
 
@@ -35,7 +36,7 @@ Set `draft: false` when it ships. The index, `/writing/`, and `/rss.xml` pick it
 
 ```
 src/
-  content.config.ts        collection schema: title, description, date, pillar, draft
+  content.config.ts        collection schema: title, description, date, pillar, tags, draft
   content/blog/            posts
   layouts/Base.astro       shell, typography, dark mode
   pages/index.astro        the 30-second layer: claim, scope card, links
