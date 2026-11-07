@@ -52,8 +52,10 @@ AGENTS.md                      hard rules: disclosure, ratio, cadence, copy
 - [ ] The scope card: read it as a stranger. Every sentence must be true and public-safe.
 - [ ] `src/content/blog/0001-invariants-without-consensus.md` — replace the TODOs, then
       `draft: false`.
-- [ ] Create the repo `dumiqo.github.io` on GitHub, push `main`.
-- [ ] Settings → Pages → Source: **GitHub Actions**.
+- [x] Create the repo `dumiqo.github.io` on GitHub, push `main`. (2026-11-07, live at
+      https://dumiqo.github.io)
+- [x] Settings → Pages → Source: **GitHub Actions**. (enabled before the first push — otherwise
+      `deploy-pages` fails with `Get Pages site failed`, which looks like a code bug and is not)
 - [ ] Profile README on `github.com/dumiqo` pointing at the site.
 - [ ] Only then: LinkedIn headline + Featured.
 
