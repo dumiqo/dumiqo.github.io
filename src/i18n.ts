@@ -76,16 +76,16 @@ const en: Copy = {
     'Raft core: leader election and log replication safety (§5.4) on deterministic test clocks. The project is on hold right now.',
   readHire: 'Read / hire',
   writingLinkText:
-    'distributed systems in three lanes: consensus, load, and how the skill was acquired.',
+    'one request, many systems: fan-out, caching, capacity, consensus.',
   githubLinkText: 'raft-broker and the rest.',
   latest: 'Latest',
 
   writingTitle: 'Writing — Konstantin Kim',
   writingDescription:
-    'Notes on distributed systems in three lanes: consensus and replication, load and failure, and the path between knowing a thing and having built it.',
+    'One request, many systems: notes on fan-out, caching and invalidation, what capacity costs, and consensus when correctness cannot be traded away.',
   writingH1: 'Writing',
   writingLede:
-    'One piece a week on distributed systems, in three lanes: consensus and replication, load and failure, and the path between knowing a thing and having built it. Every claim is anchored in something that exists on disk: a commit, a failing run, a measurement.',
+    'One request, many systems. Every hard system I have worked on does the same trick: a single search becomes dozens of upstream calls, and the answer still has to look like one. Notes on fan-out, caching and invalidation, on what that capacity costs, and on consensus when correctness cannot be traded away.',
   writingEmpty: 'Nothing published yet.',
 
   postBack: '← all writing',
@@ -129,16 +129,16 @@ const ru: Copy = {
     'Ядро Raft: безопасность выборов лидера и репликации лога (§5.4) на детерминированных тестовых часах. Проект сейчас на паузе.',
   readHire: 'Читать / нанимать',
   writingLinkText:
-    'распределённые системы в три полосы: консенсус, нагрузка и как навык был получен.',
+    'один запрос - много систем: веер, кэш, ёмкость, консенсус.',
   githubLinkText: 'raft-broker и остальное.',
   latest: 'Последнее',
 
   writingTitle: 'Тексты — Константин Ким',
   writingDescription:
-    'Заметки о распределённых системах в три полосы: консенсус и репликация, нагрузка и отказы, и путь между «знаю» и «сделал».',
+    'Один запрос - много систем: заметки про веер, кэш и инвалидацию, цену ёмкости и консенсус, когда корректностью торговать нельзя.',
   writingH1: 'Тексты',
   writingLede:
-    'Один текст в неделю про распределённые системы, в три полосы: консенсус и репликация, нагрузка и отказы, и путь между «знаю» и «сделал». Каждое утверждение опирается на то, что есть на диске: коммит, упавший прогон, замер.',
+    'Один запрос - много систем. Каждая сложная система, с которой я работал, делает один и тот же фокус: один поиск превращается в десятки вызовов вверх, а ответ всё равно должен выглядеть как один. Заметки про веер, кэш и инвалидацию, про цену этой ёмкости и про консенсус, когда корректностью торговать нельзя.',
   writingEmpty: 'Пока ничего не опубликовано.',
 
   postBack: '← все тексты',
