@@ -1,11 +1,11 @@
 ---
 title: "The database wasn't the problem: what 1000x traffic actually means"
 description: The load a database sees is a product of four factors, and only one of them is about the database. A mock interview answer that scored 3 out of 10, taken apart.
-date: 2026-11-19
+date: 2026-11-11
 pillar: design
 series: 1000x-traffic
 part: 1
-draft: true
+draft: false
 ---
 
 
