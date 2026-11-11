@@ -76,16 +76,16 @@ const en: Copy = {
     'Raft core: leader election and log replication safety (§5.4) on deterministic test clocks. The project is on hold right now.',
   readHire: 'Read / hire',
   writingLinkText:
-    'distributed systems under load, practical system design, and how the skill was acquired.',
+    'distributed systems in three lanes: consensus, load, and how the skill was acquired.',
   githubLinkText: 'raft-broker and the rest.',
   latest: 'Latest',
 
   writingTitle: 'Writing — Konstantin Kim',
   writingDescription:
-    'Notes on distributed systems: how they fail under load, which number proves it, and what the obvious answer gets wrong.',
+    'Notes on distributed systems in three lanes: consensus and replication, load and failure, and the path between knowing a thing and having built it.',
   writingH1: 'Writing',
   writingLede:
-    'One piece a week on distributed systems and how the skill was actually acquired: what breaks when traffic grows, which counter settles the argument, and why the fix is usually in another layer. Every claim is anchored in something that exists on disk: a commit, a failing run, a measurement.',
+    'One piece a week on distributed systems, in three lanes: consensus and replication, load and failure, and the path between knowing a thing and having built it. Every claim is anchored in something that exists on disk: a commit, a failing run, a measurement.',
   writingEmpty: 'Nothing published yet.',
 
   postBack: '← all writing',
@@ -129,16 +129,16 @@ const ru: Copy = {
     'Ядро Raft: безопасность выборов лидера и репликации лога (§5.4) на детерминированных тестовых часах. Проект сейчас на паузе.',
   readHire: 'Читать / нанимать',
   writingLinkText:
-    'распределённые системы под нагрузкой, практический system design и как навык был получен.',
+    'распределённые системы в три полосы: консенсус, нагрузка и как навык был получен.',
   githubLinkText: 'raft-broker и остальное.',
   latest: 'Последнее',
 
   writingTitle: 'Тексты — Константин Ким',
   writingDescription:
-    'Заметки про распределённые системы: как они ломаются под нагрузкой, какое число это доказывает и что не так с очевидным ответом.',
+    'Заметки о распределённых системах в три полосы: консенсус и репликация, нагрузка и отказы, и путь между «знаю» и «сделал».',
   writingH1: 'Тексты',
   writingLede:
-    'Один текст в неделю про распределённые системы и то, как навык был получен: что ломается, когда растёт трафик, какой счётчик закрывает спор и почему чинить обычно надо в другом слое. Каждое утверждение опирается на то, что есть на диске: коммит, упавший прогон, замер.',
+    'Один текст в неделю про распределённые системы, в три полосы: консенсус и репликация, нагрузка и отказы, и путь между «знаю» и «сделал». Каждое утверждение опирается на то, что есть на диске: коммит, упавший прогон, замер.',
   writingEmpty: 'Пока ничего не опубликовано.',
 
   postBack: '← все тексты',
