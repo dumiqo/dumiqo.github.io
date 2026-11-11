@@ -1,7 +1,7 @@
 ---
 title: The invariants I can't hold without consensus
 description: A queue broker promises ordered delivery, deduplication, and exactly-once. Every one of those promises collapses the moment leader election and log replication are wrong — so I wrote the Raft core by hand.
-date: 2026-11-15
+date: 2026-11-15 # placeholder, not a publication promise - the material is frozen until raft-broker is reviewed
 pillar: consensus
 draft: true
 ---
