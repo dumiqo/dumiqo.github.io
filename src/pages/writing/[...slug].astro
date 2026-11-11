@@ -4,7 +4,10 @@ import PostPage from '../../views/Post.astro';
 import { langOf, slugOf } from '../../lib/posts';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', (post) => !post.data.draft && langOf(post) === 'en');
+  // Drafts get a page only in `astro dev`, so the text can be read at its real URL
+  // before publishing. Production builds and the index pages still exclude them:
+  // `import.meta.env.DEV` is false in `astro build`, including on CI.
+  const posts = await getCollection('blog', (post) => (!post.data.draft || import.meta.env.DEV) && langOf(post) === 'en');
   return posts.map((post) => ({ params: { slug: slugOf(post) }, props: { post } }));
 }
 

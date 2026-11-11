@@ -4,7 +4,8 @@ import PostPage from '../../../views/Post.astro';
 import { langOf, slugOf } from '../../../lib/posts';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', (post) => !post.data.draft && langOf(post) === 'ru');
+  // Same rule as the English page: drafts render in `astro dev` only.
+  const posts = await getCollection('blog', (post) => (!post.data.draft || import.meta.env.DEV) && langOf(post) === 'ru');
   return posts.map((post) => ({ params: { slug: slugOf(post) }, props: { post } }));
 }
 
