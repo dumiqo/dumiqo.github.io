@@ -1,8 +1,10 @@
 ---
 import { render } from 'astro:content';
+import { getCollection } from 'astro:content';
+import { existsSync } from 'node:fs';
 import Base from '../layouts/Base.astro';
 import { href, shortDate, t } from '../i18n';
-import { counterpart, langOf, postPath, type Post } from '../lib/posts';
+import { counterpart, langOf, postPath, slugOf, type Post } from '../lib/posts';
 
 interface Props {
   post: Post;
@@ -25,6 +27,24 @@ const alternates = pair
       { lang: langOf(pair), href: postPath(pair) },
     ]
   : [{ lang, href: postPath(post) }];
+
+// Series membership is stored as a slug plus a part number and nothing else - the total
+// part count is never written down, so publishing part 7 never edits part 1. The line
+// under the title says which series and which part; the list at the bottom appears only
+// once another published part exists.
+const series = post.data.series;
+const seriesName = series ? (copy.seriesLabel[series] ?? series) : undefined;
+const otherParts = series
+  ? (
+      await getCollection(
+        'blog',
+        (p) => p.data.series === series && !p.data.draft && langOf(p) === lang && p.id !== post.id,
+      )
+    ).sort((a, b) => (a.data.part ?? 0) - (b.data.part ?? 0))
+  : [];
+
+// A social card is a static file per slug; a post without one simply has no image.
+const ogImage = existsSync(`public/og/${slugOf(post)}.png`) ? `/og/${slugOf(post)}.png` : undefined;
 ---
 
 <Base
@@ -33,15 +53,36 @@ const alternates = pair
   description={post.data.description}
   switchHref={switchHref}
   alternates={alternates}
+  image={ogImage}
+  ogType="article"
+  ogTitle={post.data.title}
 >
   <article>
     <h1>{post.data.title}</h1>
     <p class="muted meta">
       {shortDate(post.data.date)} · {copy.pillar[post.data.pillar]}
+      {seriesName && post.data.part && <span> · {copy.partWord} {post.data.part} · {seriesName}</span>}
       {!pair && <span> · {copy.postOnlyIn}</span>}
     </p>
     <Content />
   </article>
+
+  {
+    otherParts.length > 0 && (
+      <p class="muted series">
+        {copy.seriesMore}:{' '}
+        {otherParts.map((p, i) => (
+          <>
+            {i > 0 && ' · '}
+            <a href={postPath(p)}>
+              {copy.partWord} {p.data.part}
+            </a>
+          </>
+        ))}
+      </p>
+    )
+  }
+
   <p><a href={href(lang, 'writing/')}>{copy.postBack}</a></p>
 
   <style>

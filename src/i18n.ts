@@ -42,6 +42,9 @@ type Copy = {
 
   postBack: string;
   postOnlyIn: string;
+  partWord: string;
+  seriesLabel: Record<string, string>;
+  seriesMore: string;
   pillar: Record<'consensus' | 'design' | 'path' | 'ai', string>;
 
   feedTitle: string;
@@ -90,6 +93,10 @@ const en: Copy = {
 
   postBack: '← all writing',
   postOnlyIn: 'No translation yet.',
+  partWord: 'Part',
+  // Series are slugs in frontmatter; a readable name belongs to the copy, not the data.
+  seriesLabel: { '1000x-traffic': '1000x traffic' },
+  seriesMore: 'More in this series',
   pillar: {
     consensus: 'consensus & replication',
     design: 'system design',
@@ -143,6 +150,9 @@ const ru: Copy = {
 
   postBack: '← все тексты',
   postOnlyIn: 'Перевода пока нет.',
+  partWord: 'Часть',
+  seriesLabel: { '1000x-traffic': '1000x traffic' },
+  seriesMore: 'Другие части серии',
   pillar: {
     consensus: 'консенсус и репликация',
     design: 'system design',

@@ -10,9 +10,25 @@ interface Props {
   switchHref?: string;
   // hreflang alternates, for pages that exist in both languages.
   alternates?: { lang: Lang; href: string }[];
+  // Social preview image, relative to the site root. Absent is normal: the card then
+  // falls back to title + description with no image.
+  image?: string;
+  ogType?: 'website' | 'article';
+  // The card's headline without the « — site name» tail the <title> carries: LinkedIn
+  // truncates around 100 characters, and the tail is the part nobody needs there.
+  ogTitle?: string;
 }
 
-const { title, lang, description, switchHref, alternates = [] } = Astro.props;
+const {
+  title,
+  lang,
+  description,
+  switchHref,
+  alternates = [],
+  image,
+  ogType = 'website',
+  ogTitle = title,
+} = Astro.props;
 const copy = t(lang);
 const site = Astro.site ?? new URL('https://dumiqo.github.io');
 const absolute = (path: string) => new URL(path, site).toString();
@@ -29,6 +45,19 @@ const xDefault = alternates.find((alt) => alt.lang === 'en')?.href ?? alternates
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
+
+    <!-- Link previews read og:*, not the page. LinkedIn is the only distribution channel
+         for the first six months, and a shared link without an image is a text-only card. -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={ogTitle} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={copy.siteName} />
+    <meta property="og:locale" content={lang === 'ru' ? 'ru_RU' : 'en_US'} />
+    {image && <meta property="og:image" content={absolute(image)} />}
+    {image && <meta property="og:image:width" content="1200" />}
+    {image && <meta property="og:image:height" content="630" />}
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
     <link
       rel="alternate"
       type="application/rss+xml"
