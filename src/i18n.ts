@@ -75,16 +75,17 @@ const en: Copy = {
   currentlyValue:
     'Raft core: leader election and log replication safety (§5.4) on deterministic test clocks. The project is on hold right now.',
   readHire: 'Read / hire',
-  writingLinkText: 'consensus, practical system design, and how the skill was acquired.',
+  writingLinkText:
+    'distributed systems under load, practical system design, and how the skill was acquired.',
   githubLinkText: 'raft-broker and the rest.',
   latest: 'Latest',
 
   writingTitle: 'Writing — Konstantin Kim',
   writingDescription:
-    'Notes on consensus, replication, and building distributed systems by hand.',
+    'Notes on distributed systems: how they fail under load, which number proves it, and what the obvious answer gets wrong.',
   writingH1: 'Writing',
   writingLede:
-    'One piece a week on consensus, replication and how the skill was actually acquired. Every claim is anchored in something that exists on disk: a commit, a failing run, a measurement.',
+    'One piece a week on distributed systems and how the skill was actually acquired: what breaks when traffic grows, which counter settles the argument, and why the fix is usually in another layer. Every claim is anchored in something that exists on disk: a commit, a failing run, a measurement.',
   writingEmpty: 'Nothing published yet.',
 
   postBack: '← all writing',
@@ -127,16 +128,17 @@ const ru: Copy = {
   currentlyValue:
     'Ядро Raft: безопасность выборов лидера и репликации лога (§5.4) на детерминированных тестовых часах. Проект сейчас на паузе.',
   readHire: 'Читать / нанимать',
-  writingLinkText: 'консенсус, практический system design и как навык был получен.',
+  writingLinkText:
+    'распределённые системы под нагрузкой, практический system design и как навык был получен.',
   githubLinkText: 'raft-broker и остальное.',
   latest: 'Последнее',
 
   writingTitle: 'Тексты — Константин Ким',
   writingDescription:
-    'Заметки про консенсус, репликацию и сборку распределённых систем руками.',
+    'Заметки про распределённые системы: как они ломаются под нагрузкой, какое число это доказывает и что не так с очевидным ответом.',
   writingH1: 'Тексты',
   writingLede:
-    'Один текст в неделю про консенсус, репликацию и то, как навык был получен. Каждое утверждение опирается на то, что есть на диске: коммит, упавший прогон, замер.',
+    'Один текст в неделю про распределённые системы и то, как навык был получен: что ломается, когда растёт трафик, какой счётчик закрывает спор и почему чинить обычно надо в другом слое. Каждое утверждение опирается на то, что есть на диске: коммит, упавший прогон, замер.',
   writingEmpty: 'Пока ничего не опубликовано.',
 
   postBack: '← все тексты',
